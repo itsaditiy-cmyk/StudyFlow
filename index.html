@@ -1,337 +1,808 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#111827">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#111827">
 
 <title>StudyFlow</title>
 
+
 <style>
+
+/* =========================
+   BASIC
+========================= */
 
 * {
     box-sizing: border-box;
 }
 
 body {
+
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
     background: #f5f6fa;
+
     color: #171717;
+
 }
 
 button,
 input,
-select {
+select,
+textarea {
+
     font: inherit;
+
 }
 
 button {
+
     cursor: pointer;
+
 }
 
-/* APP */
+
+/* =========================
+   APP
+========================= */
 
 .app {
+
     max-width: 700px;
+
     margin: auto;
-    padding-bottom: 90px;
+
+    padding-bottom: 100px;
+
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 header {
+
     background: white;
-    padding: 22px;
+
+    padding: 18px 20px;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
-    border-bottom: 1px solid #e5e7eb;
+
+    border-bottom:
+    1px solid #e5e7eb;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 10;
+
 }
 
 .logo {
+
     font-size: 25px;
+
     font-weight: 800;
+
 }
 
 .subtitle {
+
     color: #737373;
+
     font-size: 12px;
+
 }
 
-.pro-button {
+.account-button {
+
     background: #111827;
+
     color: white;
-    border: 0;
+
+    border: none;
+
     padding: 9px 14px;
+
     border-radius: 20px;
+
 }
 
-/* MAIN */
+
+/* =========================
+   MAIN
+========================= */
 
 main {
+
     padding: 20px;
+
 }
 
 h1 {
+
     font-size: 30px;
+
     margin: 5px 0;
+
 }
 
 h2 {
+
     font-size: 20px;
+
+}
+
+h3 {
+
+    margin-bottom: 5px;
+
 }
 
 .muted {
+
     color: #737373;
+
 }
 
-/* STATS */
+
+/* =========================
+   STATS
+========================= */
 
 .stats {
+
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+    1fr 1fr;
+
     gap: 12px;
+
     margin: 20px 0;
+
 }
 
 .stat {
+
     background: white;
+
     padding: 18px;
+
     border-radius: 18px;
-    border: 1px solid #e5e7eb;
+
+    border:
+    1px solid #e5e7eb;
+
 }
 
 .stat strong {
+
     display: block;
+
     font-size: 25px;
+
 }
 
-/* CARDS */
+
+/* =========================
+   CARDS
+========================= */
 
 .card {
+
     background: white;
+
     border-radius: 18px;
+
     padding: 18px;
+
     margin-bottom: 12px;
-    border: 1px solid #e5e7eb;
+
+    border:
+    1px solid #e5e7eb;
+
 }
 
+
+/* =========================
+   QUOTE
+========================= */
+
+.quote {
+
+    background: #111827;
+
+    color: white;
+
+    padding: 22px;
+
+    border-radius: 20px;
+
+    margin: 20px 0;
+
+}
+
+.quote-text {
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+}
+
+.quote-author {
+
+    font-size: 12px;
+
+    opacity: .7;
+
+    margin-top: 10px;
+
+}
+
+
+/* =========================
+   TASKS
+========================= */
+
 .task-header {
+
     display: flex;
+
     gap: 14px;
+
     align-items: center;
+
 }
 
 .icon {
+
     width: 45px;
+
     height: 45px;
+
     border-radius: 14px;
+
     background: #f0f1f5;
+
     display: grid;
+
     place-items: center;
+
     font-size: 22px;
+
 }
 
 .task-title {
+
     font-weight: 700;
-    margin: 3px 0;
+
 }
 
 .task-subject {
+
     color: #737373;
+
     font-size: 12px;
+
 }
 
 .task-time {
+
     color: #737373;
+
     font-size: 13px;
+
 }
 
 .actions {
+
     display: flex;
+
     gap: 7px;
+
     margin-top: 15px;
+
     flex-wrap: wrap;
+
 }
 
 .actions button {
-    border: 0;
+
+    border: none;
+
     padding: 10px 13px;
+
     border-radius: 11px;
+
     background: #f1f1f3;
+
 }
 
 .primary {
-    background: #111827 !important;
+
+    background:
+    #111827 !important;
+
     color: white !important;
+
 }
 
-/* EXAMS */
+
+/* =========================
+   EXAMS
+========================= */
 
 .exam {
+
     background: white;
+
     padding: 18px;
+
     border-radius: 18px;
+
     margin-bottom: 12px;
-    border: 1px solid #e5e7eb;
+
+    border:
+    1px solid #e5e7eb;
+
 }
 
 .exam-top {
+
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+    space-between;
+
 }
 
 .countdown {
+
     font-weight: 800;
+
 }
 
 .topic {
+
     display: inline-block;
+
     background: #f1f1f3;
+
     padding: 6px 9px;
+
     border-radius: 9px;
+
     font-size: 12px;
+
     margin: 3px;
+
 }
 
-/* NAVIGATION */
+
+/* =========================
+   NAVIGATION
+========================= */
 
 nav {
+
     position: fixed;
+
     bottom: 0;
+
     left: 50%;
-    transform: translateX(-50%);
-    width: min(700px, 100%);
+
+    transform:
+    translateX(-50%);
+
+    width:
+    min(700px, 100%);
+
     background: white;
-    border-top: 1px solid #ddd;
+
+    border-top:
+    1px solid #ddd;
+
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 8px;
+
+    grid-template-columns:
+    repeat(5, 1fr);
+
+    padding: 7px;
+
     z-index: 20;
+
 }
 
 nav button {
+
     background: none;
-    border: 0;
-    padding: 7px;
+
+    border: none;
+
+    padding: 6px;
+
     font-size: 18px;
+
 }
 
 nav span {
+
     display: block;
-    font-size: 10px;
+
+    font-size: 9px;
+
     color: #737373;
+
 }
 
-/* MODAL */
 
-.modal-bg {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.45);
+/* =========================
+   FEED
+========================= */
+
+.feed {
+
+    height: 72vh;
+
+    overflow-y: scroll;
+
+    scroll-snap-type: y mandatory;
+
+}
+
+.video {
+
+    height: 72vh;
+
+    scroll-snap-align: start;
+
+    background: #111827;
+
+    color: white;
+
+    border-radius: 20px;
+
+    margin-bottom: 15px;
+
+    position: relative;
+
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    z-index: 50;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    padding: 20px;
+
 }
 
-.modal {
+.video-placeholder {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 55px;
+
+}
+
+.video-info {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+.video-actions {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 15px;
+
+}
+
+.video-actions button {
+
+    border: none;
+
+    background:
+    rgba(255,255,255,.15);
+
+    color: white;
+
+    padding: 10px;
+
+    border-radius: 12px;
+
+}
+
+
+/* =========================
+   CATEGORY BUTTONS
+========================= */
+
+.categories {
+
+    display: flex;
+
+    gap: 8px;
+
+    overflow-x: auto;
+
+    margin-bottom: 15px;
+
+}
+
+.category {
+
+    border: none;
+
+    padding: 9px 13px;
+
+    border-radius: 20px;
+
     background: white;
-    width: min(700px, 100%);
-    padding: 25px;
-    border-radius: 25px 25px 0 0;
-    max-height: 90vh;
-    overflow-y: auto;
+
+    white-space: nowrap;
+
 }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
+
+/* =========================
+   CREATOR
+========================= */
+
+.creator {
+
+    text-align: center;
+
 }
 
-.close {
-    border: 0;
-    background: #f1f1f3;
+.creator-icon {
+
+    width: 75px;
+
+    height: 75px;
+
+    background: #111827;
+
+    color: white;
+
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    font-size: 20px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin: auto;
+
+    font-size: 30px;
+
 }
+
+
+/* =========================
+   FORMS
+========================= */
 
 label {
+
     display: block;
+
     font-size: 13px;
+
     font-weight: 700;
+
     margin-top: 15px;
+
     margin-bottom: 6px;
+
 }
 
 input,
-select {
+select,
+textarea {
+
     width: 100%;
+
     padding: 12px;
-    border: 1px solid #d4d4d8;
+
+    border:
+    1px solid #d4d4d8;
+
     border-radius: 11px;
+
     background: white;
+
+}
+
+textarea {
+
+    min-height: 100px;
+
+    resize: vertical;
+
 }
 
 .form-button {
+
     width: 100%;
-    border: 0;
+
+    border: none;
+
     padding: 13px;
+
     border-radius: 12px;
+
     margin-top: 20px;
+
 }
 
-/* TIMER */
 
-.timer {
-    text-align: center;
-    font-size: 42px;
-    font-weight: 800;
-    margin: 20px;
+/* =========================
+   MODAL
+========================= */
+
+.modal-bg {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+    rgba(0,0,0,.45);
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    z-index: 50;
+
 }
 
-/* PRO */
+.modal {
 
-.pro {
-    text-align: center;
+    background: white;
+
+    width:
+    min(700px,100%);
+
+    padding: 25px;
+
+    border-radius:
+    25px 25px 0 0;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
 }
 
-.pro ul {
-    text-align: left;
-    line-height: 2;
-    list-style: none;
-    padding: 0;
+.modal-header {
+
+    display: flex;
+
+    justify-content:
+    space-between;
+
 }
 
-.price {
-    font-size: 32px;
-    font-weight: 800;
-    margin: 20px 0 5px;
+.close {
+
+    border: none;
+
+    background: #f1f1f3;
+
+    border-radius: 50%;
+
+    width: 35px;
+
+    height: 35px;
+
+    font-size: 20px;
+
 }
 
-/* EMPTY */
+
+/* =========================
+   EMPTY
+========================= */
 
 .empty {
+
     text-align: center;
+
     background: white;
+
     padding: 35px 20px;
+
     border-radius: 18px;
-    border: 1px dashed #ccc;
+
+    border:
+    1px dashed #ccc;
+
 }
 
 .empty-icon {
+
     font-size: 40px;
+
+}
+
+
+/* =========================
+   PRO
+========================= */
+
+.price {
+
+    font-size: 32px;
+
+    font-weight: 800;
+
+    margin: 20px 0 5px;
+
+}
+
+.pro-list {
+
+    text-align: left;
+
+    line-height: 2;
+
+    list-style: none;
+
+    padding: 0;
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="app">
+
 
 <header>
 
@@ -347,16 +818,19 @@ select {
 
     </div>
 
+
     <button
-        class="pro-button"
-        onclick="showPro()"
+        class="account-button"
+        onclick="account()"
     >
-        ✨ Pro
+        👤 Account
     </button>
 
 </header>
 
+
 <main id="app"></main>
+
 
 <nav>
 
@@ -368,6 +842,11 @@ select {
     <button onclick="planner()">
         📅
         <span>Planner</span>
+    </button>
+
+    <button onclick="feed()">
+        ▶️
+        <span>StudyFeed</span>
     </button>
 
     <button onclick="exams()">
@@ -382,10 +861,12 @@ select {
 
 </nav>
 
+
 </div>
 
 
 <script>
+
 
 /* =========================
    DATA
@@ -393,34 +874,119 @@ select {
 
 let data =
 JSON.parse(
-    localStorage.getItem("studyflow")
+    localStorage.getItem(
+        "studyflow"
+    )
 ) || {
 
     name: "",
 
     subjects: [
+
         "Mathematics",
+
         "Science",
-        "English"
+
+        "Social Studies",
+
+        "English",
+
+        "Hindi",
+
+        "Marathi",
+
+        "Bengali",
+
+        "Tamil",
+
+        "Telugu",
+
+        "Kannada",
+
+        "Malayalam",
+
+        "Gujarati",
+
+        "Punjabi",
+
+        "French",
+
+        "German",
+
+        "Spanish",
+
+        "Computer Science",
+
+        "Art",
+
+        "Music",
+
+        "Physical Education"
+
     ],
 
     exams: [],
 
-    tasks: []
+    tasks: [],
+
+    savedVideos: []
 
 };
 
 
 /* =========================
-   SAVE DATA
+   SAVE
 ========================= */
 
 function save() {
 
     localStorage.setItem(
+
         "studyflow",
+
         JSON.stringify(data)
+
     );
+
+}
+
+
+/* =========================
+   QUOTES
+========================= */
+
+const quotes = [
+
+    "Small progress is still progress.",
+
+    "You don't have to be perfect. Just keep going.",
+
+    "Your future self will thank you.",
+
+    "One chapter at a time.",
+
+    "Consistency beats motivation.",
+
+    "Believe you can, and you're halfway there.",
+
+    "You are capable of more than you think.",
+
+    "Study today. Celebrate tomorrow."
+
+];
+
+
+function dailyQuote() {
+
+    let day =
+        Math.floor(
+            Date.now() /
+            86400000
+        );
+
+    return quotes[
+        day % quotes.length
+    ];
 
 }
 
@@ -439,79 +1005,41 @@ function today() {
 
 
 /* =========================
-   DAYS UNTIL EXAM
+   DAYS UNTIL
 ========================= */
 
 function daysUntil(date) {
 
-    let now = new Date();
+    let now =
+        new Date();
 
-    let exam = new Date(date);
+    let exam =
+        new Date(date);
 
     return Math.max(
+
         0,
+
         Math.ceil(
+
             (
                 exam -
+
                 new Date(
+
                     now.getFullYear(),
+
                     now.getMonth(),
+
                     now.getDate()
+
                 )
+
             ) / 86400000
+
         )
+
     );
-
-}
-
-
-/* =========================
-   GENERATE STUDY TASKS
-========================= */
-
-function generateTasks(exam) {
-
-    exam.topics.forEach(
-        (topic, index) => {
-
-            let date = new Date();
-
-            date.setDate(
-                date.getDate() +
-                Math.min(
-                    index,
-                    daysUntil(exam.date)
-                )
-            );
-
-            data.tasks.push({
-
-                id:
-                    Date.now() +
-                    Math.random(),
-
-                subject:
-                    exam.subject,
-
-                topic:
-                    topic,
-
-                date:
-                    date.toISOString()
-                    .split("T")[0],
-
-                duration:
-                    30,
-
-                done:
-                    false
-
-            });
-
-        }
-    );
-
-    save();
 
 }
 
@@ -524,51 +1052,79 @@ function home() {
 
     let tasks =
         data.tasks.filter(
+
             task =>
-                task.date === today() &&
+
+                task.date ===
+                today()
+
+                &&
+
                 !task.done
+
         );
+
 
     let completed =
         data.tasks.filter(
             task => task.done
         ).length;
 
+
     let percent =
         data.tasks.length
-            ? Math.round(
-                completed /
-                data.tasks.length *
-                100
-            )
-            : 0;
+
+        ?
+
+        Math.round(
+
+            completed /
+
+            data.tasks.length *
+
+            100
+
+        )
+
+        :
+
+        0;
+
 
     document.getElementById(
         "app"
     ).innerHTML = `
 
-        <section>
 
-            <p class="muted">
-                GOOD EVENING
-            </p>
+        <p class="muted">
+            GOOD EVENING
+        </p>
 
-            <h1>
-                ${data.name || "Ready to study?"} 👋
-            </h1>
 
-            <p class="muted">
-                ${
-                    tasks.length
-                    ? "Here is your plan for today."
-                    : "Your day is clear."
-                }
-            </p>
+        <h1>
+            ${data.name || "Ready to study?"} 👋
+        </h1>
 
-        </section>
+
+        <div class="quote">
+
+            <div class="quote-text">
+
+                ✨ "${dailyQuote()}"
+
+            </div>
+
+            <div class="quote-author">
+
+                StudyFlow Motivation
+
+            </div>
+
+        </div>
 
 
         <div class="stats">
+
 
             <div class="stat">
 
@@ -595,6 +1151,20 @@ function home() {
 
             </div>
 
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🔥 Keep your streak going
+            </h3>
+
+            <p class="muted">
+                Complete today's tasks to stay on track.
+            </p>
+
         </div>
 
 
@@ -604,38 +1174,44 @@ function home() {
 
 
         ${
+
             tasks.length
 
-            ? tasks
+            ?
+
+            tasks
                 .map(taskCard)
                 .join("")
 
-            : `
-
-                <div class="empty">
-
-                    <div class="empty-icon">
-                        🎉
-                    </div>
-
-                    <h3>
-                        Nothing due today
-                    </h3>
-
-                    <p class="muted">
-                        Add an exam to generate your plan.
-                    </p>
-
-                    <button
-                        class="primary form-button"
-                        onclick="addExam()"
-                    >
-                        Create exam
-                    </button>
-
-                </div>
+            :
 
             `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🎉
+                </div>
+
+                <h3>
+                    Nothing due today
+                </h3>
+
+                <p class="muted">
+                    Add an exam to generate your plan.
+                </p>
+
+                <button
+                    class="primary form-button"
+                    onclick="addExam()"
+                >
+                    Create exam
+                </button>
+
+            </div>
+
+            `
+
         }
 
 
@@ -645,10 +1221,15 @@ function home() {
 
 
         ${
+
             data.exams
-                .slice(0,3)
-                .map(examCard)
-                .join("")
+
+            .slice(0,3)
+
+            .map(examCard)
+
+            .join("")
+
         }
 
     `;
@@ -695,19 +1276,27 @@ function taskCard(task) {
 
                 <button
                     class="primary"
-                    onclick="startTimer(${task.id})"
+                    onclick="
+                    startTimer(${task.id})
+                    "
                 >
                     ⏱ Start
                 </button>
 
+
                 <button
-                    onclick="completeTask(${task.id})"
+                    onclick="
+                    completeTask(${task.id})
+                    "
                 >
                     ✓ Done
                 </button>
 
+
                 <button
-                    onclick="moveTomorrow(${task.id})"
+                    onclick="
+                    moveTomorrow(${task.id})
+                    "
                 >
                     Tomorrow
                 </button>
@@ -732,6 +1321,7 @@ function completeTask(id) {
             task => task.id === id
         );
 
+
     if (task) {
 
         task.done = true;
@@ -746,7 +1336,7 @@ function completeTask(id) {
 
 
 /* =========================
-   MOVE TASK
+   MOVE TOMORROW
 ========================= */
 
 function moveTomorrow(id) {
@@ -756,149 +1346,28 @@ function moveTomorrow(id) {
             task => task.id === id
         );
 
+
     if (!task)
         return;
 
+
     let date =
         new Date();
+
 
     date.setDate(
         date.getDate() + 1
     );
 
+
     task.date =
         date.toISOString()
         .split("T")[0];
 
+
     save();
 
     home();
-
-}
-
-
-/* =========================
-   TIMER
-========================= */
-
-function startTimer(id) {
-
-    let task =
-        data.tasks.find(
-            task => task.id === id
-        );
-
-    if (!task)
-        return;
-
-    let seconds =
-        task.duration * 60;
-
-    let modal =
-        document.createElement("div");
-
-    modal.className =
-        "modal-bg";
-
-    modal.innerHTML = `
-
-        <div class="modal">
-
-            <div class="modal-header">
-
-                <h2>
-                    ${task.topic}
-                </h2>
-
-                <button
-                    class="close"
-                    onclick="
-                    this.closest('.modal-bg').remove()
-                    "
-                >
-                    ×
-                </button>
-
-            </div>
-
-
-            <div
-                class="timer"
-                id="timer"
-            >
-                ${formatTime(seconds)}
-            </div>
-
-
-            <button
-                class="primary form-button"
-                onclick="
-                    completeTask(${task.id});
-                    this.closest('.modal-bg').remove();
-                "
-            >
-                Finish session
-            </button>
-
-        </div>
-
-    `;
-
-    document.body.appendChild(modal);
-
-
-    let interval =
-        setInterval(() => {
-
-            seconds--;
-
-            let timer =
-                document.getElementById(
-                    "timer"
-                );
-
-            if (timer) {
-
-                timer.textContent =
-                    formatTime(seconds);
-
-            }
-
-
-            if (seconds <= 0) {
-
-                clearInterval(interval);
-
-                completeTask(id);
-
-                modal.remove();
-
-            }
-
-        },1000);
-
-}
-
-
-/* =========================
-   FORMAT TIMER
-========================= */
-
-function formatTime(seconds) {
-
-    let minutes =
-        Math.floor(
-            seconds / 60
-        );
-
-    let secs =
-        seconds % 60;
-
-    return (
-        minutes +
-        ":" +
-        String(secs).padStart(2,"0")
-    );
 
 }
 
@@ -910,10 +1379,14 @@ function formatTime(seconds) {
 function addExam() {
 
     let modal =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     modal.className =
         "modal-bg";
+
 
     modal.innerHTML = `
 
@@ -941,6 +1414,7 @@ function addExam() {
                 Exam name
             </label>
 
+
             <input
                 id="examName"
                 placeholder="Science PT1"
@@ -951,25 +1425,50 @@ function addExam() {
                 Subject
             </label>
 
+
             <select id="examSubject">
 
                 ${
+
                     data.subjects
+
                     .map(
+
                         subject =>
+
                         `<option>
                             ${subject}
                         </option>`
+
                     )
+
                     .join("")
+
                 }
+
+
+                <option>
+                    Other
+                </option>
 
             </select>
 
 
             <label>
+                Custom subject
+            </label>
+
+
+            <input
+                id="customSubject"
+                placeholder="Only use this if you chose Other"
+            >
+
+
+            <label>
                 Exam date
             </label>
+
 
             <input
                 type="date"
@@ -981,6 +1480,7 @@ function addExam() {
                 Topics
             </label>
 
+
             <input
                 id="examTopics"
                 placeholder="Motion, Cell, Matter"
@@ -989,7 +1489,9 @@ function addExam() {
 
             <button
                 class="primary form-button"
-                onclick="createExam(this)"
+                onclick="
+                createExam(this)
+                "
             >
                 Create study plan
             </button>
@@ -998,7 +1500,10 @@ function addExam() {
 
     `;
 
-    document.body.appendChild(modal);
+
+    document.body.appendChild(
+        modal
+    );
 
 }
 
@@ -1014,15 +1519,36 @@ function createExam(button) {
             "examName"
         ).value;
 
+
     let subject =
         document.getElementById(
             "examSubject"
         ).value;
 
+
+    let custom =
+        document.getElementById(
+            "customSubject"
+        ).value.trim();
+
+
+    if (
+        subject === "Other"
+        &&
+        custom
+    ) {
+
+        subject =
+            custom;
+
+    }
+
+
     let date =
         document.getElementById(
             "examDate"
         ).value;
+
 
     let topics =
         document.getElementById(
@@ -1031,14 +1557,17 @@ function createExam(button) {
         .value
         .split(",")
         .map(
-            topic => topic.trim()
+            topic =>
+            topic.trim()
         )
         .filter(Boolean);
 
 
     if (
-        !name ||
-        !date ||
+        !name
+        ||
+        !date
+        ||
         !topics.length
     ) {
 
@@ -1071,9 +1600,14 @@ function createExam(button) {
     };
 
 
-    data.exams.push(exam);
+    data.exams.push(
+        exam
+    );
 
-    generateTasks(exam);
+
+    generateTasks(
+        exam
+    );
 
 
     button
@@ -1087,7 +1621,70 @@ function createExam(button) {
 
 
 /* =========================
-   EXAMS PAGE
+   GENERATE TASKS
+========================= */
+
+function generateTasks(exam) {
+
+    exam.topics.forEach(
+
+        (topic,index) => {
+
+            let date =
+                new Date();
+
+
+            date.setDate(
+
+                date.getDate()
+                +
+                Math.min(
+                    index,
+                    daysUntil(
+                        exam.date
+                    )
+                )
+
+            );
+
+
+            data.tasks.push({
+
+                id:
+                    Date.now()
+                    +
+                    Math.random(),
+
+                subject:
+                    exam.subject,
+
+                topic:
+                    topic,
+
+                date:
+                    date.toISOString()
+                    .split("T")[0],
+
+                duration:
+                    30,
+
+                done:
+                    false
+
+            });
+
+        }
+
+    );
+
+
+    save();
+
+}
+
+
+/* =========================
+   EXAMS
 ========================= */
 
 function exams() {
@@ -1096,9 +1693,11 @@ function exams() {
         "app"
     ).innerHTML = `
 
+
         <p class="muted">
             DEADLINES
         </p>
+
 
         <h1>
             Your exams
@@ -1117,31 +1716,39 @@ function exams() {
 
 
         ${
+
             data.exams.length
 
-            ? data.exams
-                .map(examCard)
-                .join("")
+            ?
 
-            : `
+            data.exams
 
-                <div class="empty">
+            .map(examCard)
 
-                    <div class="empty-icon">
-                        📝
-                    </div>
+            .join("")
 
-                    <h3>
-                        No exams yet
-                    </h3>
-
-                    <p class="muted">
-                        Add your first exam.
-                    </p>
-
-                </div>
+            :
 
             `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📝
+                </div>
+
+                <h3>
+                    No exams yet
+                </h3>
+
+                <p class="muted">
+                    Add your first exam.
+                </p>
+
+            </div>
+
+            `
+
         }
 
     `;
@@ -1180,7 +1787,9 @@ function examCard(exam) {
 
                 <div class="countdown">
 
-                    ${daysUntil(exam.date)}d
+                    ${daysUntil(
+                        exam.date
+                    )}d
 
                 </div>
 
@@ -1190,14 +1799,21 @@ function examCard(exam) {
             <div>
 
                 ${
+
                     exam.topics
+
                     .map(
+
                         topic =>
+
                         `<span class="topic">
                             ${topic}
                         </span>`
+
                     )
+
                     .join("")
+
                 }
 
             </div>
@@ -1227,14 +1843,18 @@ function planner() {
         let date =
             new Date();
 
+
         date.setDate(
             date.getDate() + i
         );
 
+
         dates.push(
+
             date
             .toISOString()
             .split("T")[0]
+
         );
 
     }
@@ -1244,9 +1864,11 @@ function planner() {
         "app"
     ).innerHTML = `
 
+
         <p class="muted">
             YOUR WEEK
         </p>
+
 
         <h1>
             Planner
@@ -1254,58 +1876,89 @@ function planner() {
 
 
         ${
+
             dates
-            .map(date => {
 
-                let tasks =
-                    data.tasks.filter(
-                        task =>
-                            task.date === date
-                    );
+            .map(
+
+                date => {
+
+                    let tasks =
+                        data.tasks.filter(
+
+                            task =>
+                            task.date ===
+                            date
+
+                        );
 
 
-                return `
+                    return `
 
-                    <h2>
+                        <h2>
 
-                        ${
-                            new Date(date)
-                            .toLocaleDateString(
-                                "en-IN",
-                                {
-                                    weekday:
+                            ${
+
+                                new Date(
+                                    date
+                                )
+
+                                .toLocaleDateString(
+
+                                    "en-IN",
+
+                                    {
+
+                                        weekday:
                                         "long",
 
-                                    day:
+                                        day:
                                         "numeric",
 
-                                    month:
+                                        month:
                                         "short"
-                                }
-                            )
-                        }
 
-                    </h2>
+                                    }
+
+                                )
+
+                            }
+
+                        </h2>
 
 
-                    ${
-                        tasks.length
+                        ${
 
-                        ? tasks
+                            tasks.length
+
+                            ?
+
+                            tasks
+
                             .map(taskCard)
+
                             .join("")
 
-                        : `
+                            :
+
+                            `
+
                             <p class="muted">
                                 Nothing planned.
                             </p>
-                        `
-                    }
 
-                `;
+                            `
 
-            })
+                        }
+
+                    `;
+
+                }
+
+            )
+
             .join("")
+
         }
 
     `;
@@ -1314,13 +1967,224 @@ function planner() {
 
 
 /* =========================
-   PRO PAGE
+   STUDY FEED
 ========================= */
 
-function showPro() {
+function feed() {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+
+        <p class="muted">
+            LEARN WITHOUT GETTING BORED
+        </p>
+
+
+        <h1>
+            StudyFeed 📱
+        </h1>
+
+
+        <div class="categories">
+
+            <button
+                class="category"
+            >
+                All
+            </button>
+
+            <button
+                class="category"
+            >
+                🧮 Maths
+            </button>
+
+            <button
+                class="category"
+            >
+                🔬 Science
+            </button>
+
+            <button
+                class="category"
+            >
+                📖 Languages
+            </button>
+
+            <button
+                class="category"
+            >
+                💻 Coding
+            </button>
+
+            <button
+                class="category"
+            >
+                🌍 Social Studies
+            </button>
+
+        </div>
+
+
+        <div class="feed">
+
+
+            ${videoCard(
+
+                "🧮",
+
+                "Algebra in 60 seconds",
+
+                "Maths",
+
+                "@StudyMath"
+
+            )}
+
+
+            ${videoCard(
+
+                "🔬",
+
+                "Why does the sky look blue?",
+
+                "Science",
+
+                "@ScienceShorts"
+
+            )}
+
+
+            ${videoCard(
+
+                "📖",
+
+                "Learn 5 French words",
+
+                "French",
+
+                "@LanguageLab"
+
+            )}
+
+
+            ${videoCard(
+
+                "🌍",
+
+                "The Indian Constitution explained",
+
+                "Social Studies",
+
+                "@HistoryHub"
+
+            )}
+
+
+            ${videoCard(
+
+                "💻",
+
+                "What is an algorithm?",
+
+                "Computer Science",
+
+                "@CodeKids"
+
+            )}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   VIDEO CARD
+========================= */
+
+function videoCard(
+    emoji,
+    title,
+    subject,
+    creator
+) {
+
+    return `
+
+        <div class="video">
+
+            <div class="video-placeholder">
+
+                ${emoji}
+
+            </div>
+
+
+            <div class="video-info">
+
+                <p class="muted"
+                   style="color:white">
+
+                    ${subject}
+
+                </p>
+
+
+                <h2>
+                    ${title}
+                </h2>
+
+
+                <p>
+                    ${creator}
+                </p>
+
+
+                <div class="video-actions">
+
+                    <button
+                        onclick="
+                        alert('Saved!')
+                        "
+                    >
+                        ❤️ Like
+                    </button>
+
+
+                    <button
+                        onclick="
+                        alert('Video saved!')
+                        "
+                    >
+                        🔖 Save
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   ACCOUNT
+========================= */
+
+function account() {
 
     let modal =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     modal.className =
         "modal-bg";
@@ -1328,13 +2192,128 @@ function showPro() {
 
     modal.innerHTML = `
 
-        <div class="modal pro">
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <h2>
+                    Your Account
+                </h2>
+
+
+                <button
+                    class="close"
+                    onclick="
+                    this.closest('.modal-bg').remove()
+                    "
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <p class="muted">
+
+                Accounts are coming in the next version.
+
+            </p>
+
+
+            <label>
+                Your name
+            </label>
+
+
+            <input
+                id="userName"
+                placeholder="Enter your name"
+                value="${data.name}"
+            >
+
+
+            <button
+                class="primary form-button"
+                onclick="saveName(this)"
+            >
+                Save
+            </button>
+
+
+            <button
+                class="form-button"
+                onclick="
+                alert(
+                    'Real sign in and sign out will be connected when we add secure authentication.'
+                )
+                "
+            >
+                🔐 Sign in / Sign up
+            </button>
+
+        </div>
+
+    `;
+
+
+    document.body.appendChild(
+        modal
+    );
+
+}
+
+
+/* =========================
+   SAVE NAME
+========================= */
+
+function saveName(button) {
+
+    data.name =
+        document.getElementById(
+            "userName"
+        ).value;
+
+
+    save();
+
+
+    button
+        .closest(".modal-bg")
+        .remove();
+
+
+    home();
+
+}
+
+
+/* =========================
+   PRO
+========================= */
+
+function showPro() {
+
+    let modal =
+        document.createElement(
+            "div"
+        );
+
+
+    modal.className =
+        "modal-bg";
+
+
+    modal.innerHTML = `
+
+        <div class="modal">
 
             <div class="modal-header">
 
                 <h2>
                     StudyFlow Pro ✨
                 </h2>
+
 
                 <button
                     class="close"
@@ -1349,26 +2328,22 @@ function showPro() {
 
 
             <h2>
-                Your plan should adapt to you.
+                Study smarter.
             </h2>
 
 
-            <ul>
+            <ul class="pro-list">
 
                 <li>
                     ✓ Unlimited exams
                 </li>
 
                 <li>
-                    ✓ Automatic rescheduling
+                    ✓ Smart rescheduling
                 </li>
 
                 <li>
-                    ✓ Weak-topic tracking
-                </li>
-
-                <li>
-                    ✓ Exam Mode
+                    ✓ Weak-topic detection
                 </li>
 
                 <li>
@@ -1376,7 +2351,11 @@ function showPro() {
                 </li>
 
                 <li>
-                    ✓ Smart revision
+                    ✓ AI quizzes
+                </li>
+
+                <li>
+                    ✓ Advanced analytics
                 </li>
 
             </ul>
@@ -1395,9 +2374,9 @@ function showPro() {
             <button
                 class="primary form-button"
                 onclick="
-                    alert(
-                        'Pro payments will be connected in the next version.'
-                    )
+                alert(
+                    'Payments will be connected later.'
+                )
                 "
             >
                 Join Pro
@@ -1408,7 +2387,9 @@ function showPro() {
     `;
 
 
-    document.body.appendChild(modal);
+    document.body.appendChild(
+        modal
+    );
 
 }
 
@@ -1431,21 +2412,29 @@ function progress() {
 
     let percent =
         total
-        ? Math.round(
+
+        ?
+
+        Math.round(
             completed /
             total *
             100
         )
-        : 0;
+
+        :
+
+        0;
 
 
     document.getElementById(
         "app"
     ).innerHTML = `
 
+
         <p class="muted">
             YOUR PROGRESS
         </p>
+
 
         <h1>
             Progress
@@ -1462,7 +2451,9 @@ function progress() {
                 font-size:55px;
                 font-weight:800"
             >
+
                 ${percent}%
+
             </div>
 
 
@@ -1491,16 +2482,22 @@ function progress() {
 
 
             <p>
+
                 ${completed}
+
                 of
+
                 ${total}
+
                 tasks completed
+
             </p>
 
         </div>
 
 
         <div class="stats">
+
 
             <div class="stat">
 
@@ -1527,6 +2524,7 @@ function progress() {
 
             </div>
 
+
         </div>
 
     `;
@@ -1535,7 +2533,7 @@ function progress() {
 
 
 /* =========================
-   START APP
+   START
 ========================= */
 
 home();
@@ -1543,4 +2541,5 @@ home();
 </script>
 
 </body>
+
 </html>
