@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
+
+<title>StudyFlow</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f5f6fa;
+    color: #171717;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* APP */
+
+.app {
+    max-width: 700px;
+    margin: auto;
+    padding-bottom: 90px;
+}
+
+/* HEADER */
+
+header {
+    background: white;
+    padding: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.subtitle {
+    color: #737373;
+    font-size: 12px;
+}
+
+.pro-button {
+    background: #111827;
+    color: white;
+    border: 0;
+    padding: 9px 14px;
+    border-radius: 20px;
+}
+
+/* MAIN */
+
+main {
+    padding: 20px;
+}
+
+h1 {
+    font-size: 30px;
+    margin: 5px 0;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.muted {
+    color: #737373;
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.stat {
+    background: white;
+    padding: 18px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+}
+
+.stat strong {
+    display: block;
+    font-size: 25px;
+}
+
+/* CARDS */
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.task-header {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 14px;
+    background: #f0f1f5;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+}
+
+.task-title {
+    font-weight: 700;
+    margin: 3px 0;
+}
+
+.task-subject {
+    color: #737373;
+    font-size: 12px;
+}
+
+.task-time {
+    color: #737373;
+    font-size: 13px;
+}
+
+.actions {
+    display: flex;
+    gap: 7px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.actions button {
+    border: 0;
+    padding: 10px 13px;
+    border-radius: 11px;
+    background: #f1f1f3;
+}
+
+.primary {
+    background: #111827 !important;
+    color: white !important;
+}
+
+/* EXAMS */
+
+.exam {
+    background: white;
+    padding: 18px;
+    border-radius: 18px;
+    margin-bottom: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.exam-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.countdown {
+    font-weight: 800;
+}
+
+.topic {
+    display: inline-block;
+    background: #f1f1f3;
+    padding: 6px 9px;
+    border-radius: 9px;
+    font-size: 12px;
+    margin: 3px;
+}
+
+/* NAVIGATION */
+
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(700px, 100%);
+    background: white;
+    border-top: 1px solid #ddd;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 8px;
+    z-index: 20;
+}
+
+nav button {
+    background: none;
+    border: 0;
+    padding: 7px;
+    font-size: 18px;
+}
+
+nav span {
+    display: block;
+    font-size: 10px;
+    color: #737373;
+}
+
+/* MODAL */
+
+.modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 50;
+}
+
+.modal {
+    background: white;
+    width: min(700px, 100%);
+    padding: 25px;
+    border-radius: 25px 25px 0 0;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.close {
+    border: 0;
+    background: #f1f1f3;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 6px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d4d4d8;
+    border-radius: 11px;
+    background: white;
+}
+
+.form-button {
+    width: 100%;
+    border: 0;
+    padding: 13px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+/* TIMER */
+
+.timer {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 800;
+    margin: 20px;
+}
+
+/* PRO */
+
+.pro {
+    text-align: center;
+}
+
+.pro ul {
+    text-align: left;
+    line-height: 2;
+    list-style: none;
+    padding: 0;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: 800;
+    margin: 20px 0 5px;
+}
+
+/* EMPTY */
+
+.empty {
+    text-align: center;
+    background: white;
+    padding: 35px 20px;
+    border-radius: 18px;
+    border: 1px dashed #ccc;
+}
+
+.empty-icon {
+    font-size: 40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+
+    <div>
+
+        <div class="logo">
+            StudyFlow
+        </div>
+
+        <div class="subtitle">
+            Your syllabus. Your schedule. One plan.
+        </div>
+
+    </div>
+
+    <button
+        class="pro-button"
+        onclick="showPro()"
+    >
+        ✨ Pro
+    </button>
+
+</header>
+
+<main id="app"></main>
+
+<nav>
+
+    <button onclick="home()">
+        🏠
+        <span>Home</span>
+    </button>
+
+    <button onclick="planner()">
+        📅
+        <span>Planner</span>
+    </button>
+
+    <button onclick="exams()">
+        📝
+        <span>Exams</span>
+    </button>
+
+    <button onclick="progress()">
+        📊
+        <span>Progress</span>
+    </button>
+
+</nav>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+let data =
+JSON.parse(
+    localStorage.getItem("studyflow")
+) || {
+
+    name: "",
+
+    subjects: [
+        "Mathematics",
+        "Science",
+        "English"
+    ],
+
+    exams: [],
+
+    tasks: []
+
+};
+
+
+/* =========================
+   SAVE DATA
+========================= */
+
+function save() {
+
+    localStorage.setItem(
+        "studyflow",
+        JSON.stringify(data)
+    );
+
+}
+
+
+/* =========================
+   TODAY
+========================= */
+
+function today() {
+
+    return new Date()
+        .toISOString()
+        .split("T")[0];
+
+}
+
+
+/* =========================
+   DAYS UNTIL EXAM
+========================= */
+
+function daysUntil(date) {
+
+    let now = new Date();
+
+    let exam = new Date(date);
+
+    return Math.max(
+        0,
+        Math.ceil(
+            (
+                exam -
+                new Date(
+                    now.getFullYear(),
+                    now.getMonth(),
+                    now.getDate()
+                )
+            ) / 86400000
+        )
+    );
+
+}
+
+
+/* =========================
+   GENERATE STUDY TASKS
+========================= */
+
+function generateTasks(exam) {
+
+    exam.topics.forEach(
+        (topic, index) => {
+
+            let date = new Date();
+
+            date.setDate(
+                date.getDate() +
+                Math.min(
+                    index,
+                    daysUntil(exam.date)
+                )
+            );
+
+            data.tasks.push({
+
+                id:
+                    Date.now() +
+                    Math.random(),
+
+                subject:
+                    exam.subject,
+
+                topic:
+                    topic,
+
+                date:
+                    date.toISOString()
+                    .split("T")[0],
+
+                duration:
+                    30,
+
+                done:
+                    false
+
+            });
+
+        }
+    );
+
+    save();
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function home() {
+
+    let tasks =
+        data.tasks.filter(
+            task =>
+                task.date === today() &&
+                !task.done
+        );
+
+    let completed =
+        data.tasks.filter(
+            task => task.done
+        ).length;
+
+    let percent =
+        data.tasks.length
+            ? Math.round(
+                completed /
+                data.tasks.length *
+                100
+            )
+            : 0;
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <section>
+
+            <p class="muted">
+                GOOD EVENING
+            </p>
+
+            <h1>
+                ${data.name || "Ready to study?"} 👋
+            </h1>
+
+            <p class="muted">
+                ${
+                    tasks.length
+                    ? "Here is your plan for today."
+                    : "Your day is clear."
+                }
+            </p>
+
+        </section>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <strong>
+                    ${tasks.length}
+                </strong>
+
+                <span class="muted">
+                    Tasks today
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    ${percent}%
+                </strong>
+
+                <span class="muted">
+                    Completed
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <h2>
+            Today's plan
+        </h2>
+
+
+        ${
+            tasks.length
+
+            ? tasks
+                .map(taskCard)
+                .join("")
+
+            : `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        🎉
+                    </div>
+
+                    <h3>
+                        Nothing due today
+                    </h3>
+
+                    <p class="muted">
+                        Add an exam to generate your plan.
+                    </p>
+
+                    <button
+                        class="primary form-button"
+                        onclick="addExam()"
+                    >
+                        Create exam
+                    </button>
+
+                </div>
+
+            `
+        }
+
+
+        <h2>
+            Upcoming exams
+        </h2>
+
+
+        ${
+            data.exams
+                .slice(0,3)
+                .map(examCard)
+                .join("")
+        }
+
+    `;
+
+}
+
+
+/* =========================
+   TASK CARD
+========================= */
+
+function taskCard(task) {
+
+    return `
+
+        <div class="card">
+
+            <div class="task-header">
+
+                <div class="icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <div class="task-subject">
+                        ${task.subject}
+                    </div>
+
+                    <div class="task-title">
+                        ${task.topic}
+                    </div>
+
+                    <div class="task-time">
+                        ${task.duration} minutes
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    class="primary"
+                    onclick="startTimer(${task.id})"
+                >
+                    ⏱ Start
+                </button>
+
+                <button
+                    onclick="completeTask(${task.id})"
+                >
+                    ✓ Done
+                </button>
+
+                <button
+                    onclick="moveTomorrow(${task.id})"
+                >
+                    Tomorrow
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   COMPLETE TASK
+========================= */
+
+function completeTask(id) {
+
+    let task =
+        data.tasks.find(
+            task => task.id === id
+        );
+
+    if (task) {
+
+        task.done = true;
+
+        save();
+
+        home();
+
+    }
+
+}
+
+
+/* =========================
+   MOVE TASK
+========================= */
+
+function moveTomorrow(id) {
+
+    let task =
+        data.tasks.find(
+            task => task.id === id
+        );
+
+    if (!task)
+        return;
+
+    let date =
+        new Date();
+
+    date.setDate(
+        date.getDate() + 1
+    );
+
+    task.date =
+        date.toISOString()
+        .split("T")[0];
+
+    save();
+
+    home();
+
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+function startTimer(id) {
+
+    let task =
+        data.tasks.find(
+            task => task.id === id
+        );
+
+    if (!task)
+        return;
+
+    let seconds =
+        task.duration * 60;
+
+    let modal =
+        document.createElement("div");
+
+    modal.className =
+        "modal-bg";
+
+    modal.innerHTML = `
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <h2>
+                    ${task.topic}
+                </h2>
+
+                <button
+                    class="close"
+                    onclick="
+                    this.closest('.modal-bg').remove()
+                    "
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                class="timer"
+                id="timer"
+            >
+                ${formatTime(seconds)}
+            </div>
+
+
+            <button
+                class="primary form-button"
+                onclick="
+                    completeTask(${task.id});
+                    this.closest('.modal-bg').remove();
+                "
+            >
+                Finish session
+            </button>
+
+        </div>
+
+    `;
+
+    document.body.appendChild(modal);
+
+
+    let interval =
+        setInterval(() => {
+
+            seconds--;
+
+            let timer =
+                document.getElementById(
+                    "timer"
+                );
+
+            if (timer) {
+
+                timer.textContent =
+                    formatTime(seconds);
+
+            }
+
+
+            if (seconds <= 0) {
+
+                clearInterval(interval);
+
+                completeTask(id);
+
+                modal.remove();
+
+            }
+
+        },1000);
+
+}
+
+
+/* =========================
+   FORMAT TIMER
+========================= */
+
+function formatTime(seconds) {
+
+    let minutes =
+        Math.floor(
+            seconds / 60
+        );
+
+    let secs =
+        seconds % 60;
+
+    return (
+        minutes +
+        ":" +
+        String(secs).padStart(2,"0")
+    );
+
+}
+
+
+/* =========================
+   ADD EXAM
+========================= */
+
+function addExam() {
+
+    let modal =
+        document.createElement("div");
+
+    modal.className =
+        "modal-bg";
+
+    modal.innerHTML = `
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <h2>
+                    Add an exam
+                </h2>
+
+                <button
+                    class="close"
+                    onclick="
+                    this.closest('.modal-bg').remove()
+                    "
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <label>
+                Exam name
+            </label>
+
+            <input
+                id="examName"
+                placeholder="Science PT1"
+            >
+
+
+            <label>
+                Subject
+            </label>
+
+            <select id="examSubject">
+
+                ${
+                    data.subjects
+                    .map(
+                        subject =>
+                        `<option>
+                            ${subject}
+                        </option>`
+                    )
+                    .join("")
+                }
+
+            </select>
+
+
+            <label>
+                Exam date
+            </label>
+
+            <input
+                type="date"
+                id="examDate"
+            >
+
+
+            <label>
+                Topics
+            </label>
+
+            <input
+                id="examTopics"
+                placeholder="Motion, Cell, Matter"
+            >
+
+
+            <button
+                class="primary form-button"
+                onclick="createExam(this)"
+            >
+                Create study plan
+            </button>
+
+        </div>
+
+    `;
+
+    document.body.appendChild(modal);
+
+}
+
+
+/* =========================
+   CREATE EXAM
+========================= */
+
+function createExam(button) {
+
+    let name =
+        document.getElementById(
+            "examName"
+        ).value;
+
+    let subject =
+        document.getElementById(
+            "examSubject"
+        ).value;
+
+    let date =
+        document.getElementById(
+            "examDate"
+        ).value;
+
+    let topics =
+        document.getElementById(
+            "examTopics"
+        )
+        .value
+        .split(",")
+        .map(
+            topic => topic.trim()
+        )
+        .filter(Boolean);
+
+
+    if (
+        !name ||
+        !date ||
+        !topics.length
+    ) {
+
+        alert(
+            "Please fill in everything."
+        );
+
+        return;
+
+    }
+
+
+    let exam = {
+
+        id:
+            Date.now(),
+
+        name:
+            name,
+
+        subject:
+            subject,
+
+        date:
+            date,
+
+        topics:
+            topics
+
+    };
+
+
+    data.exams.push(exam);
+
+    generateTasks(exam);
+
+
+    button
+        .closest(".modal-bg")
+        .remove();
+
+
+    home();
+
+}
+
+
+/* =========================
+   EXAMS PAGE
+========================= */
+
+function exams() {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <p class="muted">
+            DEADLINES
+        </p>
+
+        <h1>
+            Your exams
+        </h1>
+
+
+        <button
+            class="primary form-button"
+            onclick="addExam()"
+        >
+            + Add exam
+        </button>
+
+
+        <br><br>
+
+
+        ${
+            data.exams.length
+
+            ? data.exams
+                .map(examCard)
+                .join("")
+
+            : `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        No exams yet
+                    </h3>
+
+                    <p class="muted">
+                        Add your first exam.
+                    </p>
+
+                </div>
+
+            `
+        }
+
+    `;
+
+}
+
+
+/* =========================
+   EXAM CARD
+========================= */
+
+function examCard(exam) {
+
+    return `
+
+        <div class="exam">
+
+            <div class="exam-top">
+
+                <div>
+
+                    <div class="muted">
+                        ${exam.subject}
+                    </div>
+
+                    <h3>
+                        ${exam.name}
+                    </h3>
+
+                    <div class="muted">
+                        ${exam.date}
+                    </div>
+
+                </div>
+
+
+                <div class="countdown">
+
+                    ${daysUntil(exam.date)}d
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                ${
+                    exam.topics
+                    .map(
+                        topic =>
+                        `<span class="topic">
+                            ${topic}
+                        </span>`
+                    )
+                    .join("")
+                }
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   PLANNER
+========================= */
+
+function planner() {
+
+    let dates = [];
+
+
+    for (
+        let i = 0;
+        i < 7;
+        i++
+    ) {
+
+        let date =
+            new Date();
+
+        date.setDate(
+            date.getDate() + i
+        );
+
+        dates.push(
+            date
+            .toISOString()
+            .split("T")[0]
+        );
+
+    }
+
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <p class="muted">
+            YOUR WEEK
+        </p>
+
+        <h1>
+            Planner
+        </h1>
+
+
+        ${
+            dates
+            .map(date => {
+
+                let tasks =
+                    data.tasks.filter(
+                        task =>
+                            task.date === date
+                    );
+
+
+                return `
+
+                    <h2>
+
+                        ${
+                            new Date(date)
+                            .toLocaleDateString(
+                                "en-IN",
+                                {
+                                    weekday:
+                                        "long",
+
+                                    day:
+                                        "numeric",
+
+                                    month:
+                                        "short"
+                                }
+                            )
+                        }
+
+                    </h2>
+
+
+                    ${
+                        tasks.length
+
+                        ? tasks
+                            .map(taskCard)
+                            .join("")
+
+                        : `
+                            <p class="muted">
+                                Nothing planned.
+                            </p>
+                        `
+                    }
+
+                `;
+
+            })
+            .join("")
+        }
+
+    `;
+
+}
+
+
+/* =========================
+   PRO PAGE
+========================= */
+
+function showPro() {
+
+    let modal =
+        document.createElement("div");
+
+    modal.className =
+        "modal-bg";
+
+
+    modal.innerHTML = `
+
+        <div class="modal pro">
+
+            <div class="modal-header">
+
+                <h2>
+                    StudyFlow Pro ✨
+                </h2>
+
+                <button
+                    class="close"
+                    onclick="
+                    this.closest('.modal-bg').remove()
+                    "
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <h2>
+                Your plan should adapt to you.
+            </h2>
+
+
+            <ul>
+
+                <li>
+                    ✓ Unlimited exams
+                </li>
+
+                <li>
+                    ✓ Automatic rescheduling
+                </li>
+
+                <li>
+                    ✓ Weak-topic tracking
+                </li>
+
+                <li>
+                    ✓ Exam Mode
+                </li>
+
+                <li>
+                    ✓ AI Tutor
+                </li>
+
+                <li>
+                    ✓ Smart revision
+                </li>
+
+            </ul>
+
+
+            <div class="price">
+                ₹149/month
+            </div>
+
+
+            <p class="muted">
+                ₹999/year · Best value
+            </p>
+
+
+            <button
+                class="primary form-button"
+                onclick="
+                    alert(
+                        'Pro payments will be connected in the next version.'
+                    )
+                "
+            >
+                Join Pro
+            </button>
+
+        </div>
+
+    `;
+
+
+    document.body.appendChild(modal);
+
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+function progress() {
+
+    let completed =
+        data.tasks.filter(
+            task => task.done
+        ).length;
+
+
+    let total =
+        data.tasks.length;
+
+
+    let percent =
+        total
+        ? Math.round(
+            completed /
+            total *
+            100
+        )
+        : 0;
+
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <p class="muted">
+            YOUR PROGRESS
+        </p>
+
+        <h1>
+            Progress
+        </h1>
+
+
+        <div
+            class="card"
+            style="text-align:center"
+        >
+
+            <div
+                style="
+                font-size:55px;
+                font-weight:800"
+            >
+                ${percent}%
+            </div>
+
+
+            <p class="muted">
+                Tasks completed
+            </p>
+
+
+            <div
+                style="
+                height:10px;
+                background:#eee;
+                border-radius:10px;
+                overflow:hidden"
+            >
+
+                <div
+                    style="
+                    width:${percent}%;
+                    height:100%;
+                    background:#111827"
+                >
+                </div>
+
+            </div>
+
+
+            <p>
+                ${completed}
+                of
+                ${total}
+                tasks completed
+            </p>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <strong>
+                    ${data.subjects.length}
+                </strong>
+
+                <span class="muted">
+                    Subjects
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    ${data.exams.length}
+                </strong>
+
+                <span class="muted">
+                    Exams
+                </span>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   START APP
+========================= */
+
+home();
+
+</script>
+
+</body>
+</html>
